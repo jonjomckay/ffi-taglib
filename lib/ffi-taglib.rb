@@ -6,8 +6,9 @@ module TagLib
   module Native
     module Binding
       extend FFI::Library
-      ffi_lib "tag.so"
-      ffi_lib "tag_c.so"
+      ffi_lib_flags(:local)
+      ffi_lib "libtag.so"
+      ffi_lib "libtag_c.so"
 
       attach_function :file_new,              :taglib_file_new,                   [:string],           :pointer
       attach_function :file_new_type,         :taglib_file_new_type,              [:string, :int],     :pointer

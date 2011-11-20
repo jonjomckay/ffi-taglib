@@ -7,9 +7,9 @@ module TagLib
     module Binding
       extend FFI::Library
       ffi_lib_flags(:local)
-      ffi_lib "libtag.so"
-      ffi_lib "libtag_c.so"
-
+      libtag = FFI::DynamicLibrary.open("libtag.so", FFI::DynamicLibrary::RTLD_LOCAL)
+      libtag_c = FFI::DynamicLibrary.open("libtag_c.so", FFI::DynamicLibrary::RTLD_LOCAL)
+      @ffi_libs = [libtag, libtag_c]
       attach_function :file_new,              :taglib_file_new,                   [:string],           :pointer
       attach_function :file_new_type,         :taglib_file_new_type,              [:string, :int],     :pointer
       attach_function :file_free,             :taglib_file_free,                  [:pointer],          :void

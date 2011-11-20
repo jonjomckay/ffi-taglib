@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "ffi-taglib"
-  s.version = "0.0.0"
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["fistfvck"]
@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "ffi-taglib.gemspec",
     "lib/ffi-taglib.rb",
     "spec/spec_helper.rb",
     "spec/unit/ffi-taglib_spec.rb"

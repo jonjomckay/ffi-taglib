@@ -144,8 +144,6 @@ module TagLib
         :channels   => {:acc => :ro, :cast => :to_i,},
       }
 
-      puts method_name
-      puts %<(#{attributes.map{ |k,v| "#{k}" if v[:acc] == :rw }.compact.join("|")})=\\Z>
       if method_name.to_s =~ Regexp.new(%<(#{attributes.map{ |k,v| "#{k}" if v[:acc] == :rw }.compact.join("|")})=\\Z>)
         raise IOError if @closed
         # setter

@@ -27,8 +27,6 @@ Gem::Specification.new do |s|
     "VERSION",
     "ffi-taglib.gemspec",
     "lib/ffi-taglib.rb",
-    "lib/libtag.so",
-    "lib/libtag_c.so",
     "spec/ffi-taglib_spec.rb",
     "spec/spec_helper.rb"
   ]

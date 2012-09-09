@@ -7,8 +7,8 @@ module TagLib
     module Binding
       extend FFI::Library
       ffi_lib_flags(:local)
-      libtag = FFI::DynamicLibrary.open(File.join(File.dirname(__FILE__), "libtag.so"), FFI::DynamicLibrary::RTLD_LOCAL)
-      @ffi_libs = [libtag, libtag_c]
+      ffi_lib ['tag_c', 'libtag_c']
+
       attach_function :file_new,              :taglib_file_new,                   [:string],           :pointer
       attach_function :file_new_type,         :taglib_file_new_type,              [:string, :int],     :pointer
       attach_function :file_free,             :taglib_file_free,                  [:pointer],          :void
@@ -60,8 +60,9 @@ module TagLib
     WavPack   = 5
     Speex     = 6
     TrueAudio = 7
+    MP4       = 8
 
-    def self.open path, type=nil, autosave=false
+    def self.open(path, type = nil, autosave = false)
       file = File.new(path, type)
       return file unless block_given?
 
@@ -76,13 +77,13 @@ module TagLib
       end
     end
 
-    def self.valid? path, type=nil
+    def self.valid?(path, type = nil)
       File.open(path, type).valid?
     end
 
     @@target = []
     def self.terminator
-      @@target.each{ |ptr| Native::Binding.file_free ptr }
+      @@target.each { |ptr| Native::Binding.file_free ptr }
     end
     at_exit{ TagLib::File.terminator }
 
